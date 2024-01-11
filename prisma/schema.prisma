@@ -1,0 +1,71 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+  id                    String    @db.VarChar(36) @id @default(uuid())
+  name                  String?
+  email                 String    @unique
+  password              String
+
+  user_roles            UsersOnRoles[]
+  user_permissions      UsersOnPermissions[]
+
+}
+
+model Role {
+  id                    String            @db.VarChar(36) @id @default(uuid())
+  name                  String            @unique
+  description           String?
+
+  user_roles            UsersOnRoles[]
+  role_permissions       RolesOnPermissions[]
+
+}
+
+model Permission {
+  id                    String            @db.VarChar(36) @id @default(uuid())
+  name                  String            @unique
+  description           String?
+
+  user_permissions        UsersOnPermissions[]
+  role_permissions        RolesOnPermissions[]
+}
+
+
+
+model UsersOnRoles {
+  UserOnRoleId          Int               @id @default(autoincrement())
+  userId                String            @db.VarChar(36)
+  roleId                String            @db.VarChar(36)
+
+  user                  User              @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  role                  Role              @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model UsersOnPermissions {
+  UserOnPermissionId    Int               @id @default(autoincrement())
+  userId                String            @db.VarChar(36)
+  permissionId          String            @db.VarChar(36)
+
+  user                  User              @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permission            Permission        @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model RolesOnPermissions {
+  RoleOnPermissionId    Int               @id @default(autoincrement())
+  roleId                String            @db.VarChar(36) 
+  permissionId          String            @db.VarChar(36)
+
+  role                  Role              @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permission            Permission        @relation(fields: [permissionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
