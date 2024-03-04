@@ -82,13 +82,13 @@ class UserService {
     
     // Método para criar um novo usuário, realizando hash da senha e associando a role 'user'
     static async createUser(dto) {
-        const user = await prisma.user.findUnique({
+        const userFound = await prisma.user.findUnique({
             where: {
                 email: dto.email
             }
         });
 
-        if (user) {
+        if (userFound) {
             throw new AlreadyExist('Usuário já existente.');
         }
 
