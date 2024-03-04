@@ -39,7 +39,7 @@ const permissionsRoles = (arrayPermissions) => {
         }
 
         // Retorna um erro de não autorizado se o usuário não tiver nenhuma role associada
-        if (arrayRolesId.length == 0) {
+        if (arrayRolesId.length === 0) {
             return new Unauthorized('Usuário não possui acesso a essa rota.').sendReply(res);
         }
 
