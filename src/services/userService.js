@@ -147,7 +147,7 @@ class UserService {
     static async deleteUser(id) {
         const user = await this.listUser(id);
         try {
-            if (user.email == process.env.ROOT_EMAIL) {
+            if (user.email === process.env.ROOT_EMAIL) {
                 throw new Error('Esse usuário não pode ser deletado.');
             }
             await prisma.user.delete({where: {id: user.id}});
