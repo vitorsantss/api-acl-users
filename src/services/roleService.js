@@ -60,7 +60,7 @@ class RoleService {
         try {
             const role = await prisma.role.findFirst({         
                 where: {
-                    id: role.id,
+                    id: id,
                 },
                 select: {
                     id: true,
