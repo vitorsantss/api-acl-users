@@ -4,13 +4,9 @@ Este é um projeto de API desenvolvido em Node.js utilizando o framework Express
 
 ## Tecnologias Utilizadas
 
-- **Node.js**: Ambiente de execução JavaScript no lado do servidor.
-- **Express**: Framework para construção de APIs RESTful.
-- **Prisma**: ORM (Object-Relational Mapping) para Node.js, utilizado para interação com o banco de dados.
-- **bcryptjs**: Biblioteca para criptografar senhas.
-- **jsonwebtoken**: Implementação de JSON Web Tokens (JWT) para autenticação.
-- **nodemon**: Ferramenta para reiniciar automaticamente o servidor durante o desenvolvimento.
-- **eslint**: Ferramenta de linting para manter um código consistente.
+- **Node.js**
+- **Express**
+- **Prisma (ORM)**
 
 ## Como Executar
 
